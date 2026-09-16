@@ -13,7 +13,7 @@ disable-model-invocation: true
 # Richmond Recreation History → JSON
 
 Convert City of Richmond (BC) Recreation exports into one structured JSON file
-for future use. Schema: [schemas/attendance.schema.json](schemas/attendance.schema.json).
+for future use. Schema: [../../schemas/attendance.schema.json](../../schemas/attendance.schema.json).
 Converter: [scripts/convert_attendance.py](scripts/convert_attendance.py).
 
 ## Step 0 — Show how-to first
@@ -72,4 +72,4 @@ python3 "$SKILL_ROOT/scripts/convert_attendance.py" \
 
 ## Output
 
-Processed JSON conforming to [schemas/attendance.schema.json](schemas/attendance.schema.json), ready for later dashboard / portfolio use.
+Processed JSON conforming to [../../schemas/attendance.schema.json](../../schemas/attendance.schema.json), ready for later dashboard / portfolio use.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "skill/schemas/attendance.schema.json",
+  "$id": "schemas/attendance.schema.json",
   "title": "Richmond Recreation Attendance",
   "description": "Program registration history, membership/facility drop-in scans, and activity outcome records from City of Richmond Recreation.",
   "type": "object",

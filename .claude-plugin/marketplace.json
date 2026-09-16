@@ -1,0 +1,7 @@
+{
+  "name": "richmond-rec-portfolio",
+  "plugins": [
+    { "name": "richmond-rec-history-to-json", "path": "./skills/richmond-rec-history-to-json" },
+    { "name": "richmond-rec-portfolio", "path": "./skills/richmond-rec-portfolio" }
+  ]
+}
