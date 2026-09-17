@@ -26,7 +26,7 @@ Generator: [scripts/generate_portfolio.py](scripts/generate_portfolio.py).
    - Otherwise search the workspace for `attendance.json` / `resources/attendance.json`
 2. If it is missing, **do not run the conversion yourself**. Tell the user:
    > Processed JSON not found. Please run `/richmond-rec-history-to-json` first.
-   > See how to export: https://richmondrecportfolio.ianwu.tw/how-to
+   > See how to export: https://richmondrecportfolio.ianwu.tw/skill-how-to
 3. If found, validate it against `$SKILL_ROOT/../../schemas/attendance.schema.json`
 
 ## Extract portfolio data (LLM)

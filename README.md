@@ -9,7 +9,7 @@ Both skills are **user-invoked** (`disable-model-invocation: true`). Skill `rich
 1. **`/richmond-rec-history-to-json`** — convert History / Membership / Activity-Outcomes / Client Information exports into `attendance.json`
 2. **`/richmond-rec-portfolio`** — generate a portfolio web page from that JSON (plus LLM-extracted `portfolio-data.json`)
 
-Export how-to: https://richmondrecportfolio.ianwu.tw/how-to
+Export how-to: https://richmondrecportfolio.ianwu.tw/skill-how-to
 
 ## Layout
 

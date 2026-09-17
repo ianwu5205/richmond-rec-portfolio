@@ -20,7 +20,7 @@ Converter: [scripts/convert_attendance.py](scripts/convert_attendance.py).
 
 **Before asking for any files or paste**, show this how-to page to the user:
 
-https://richmondrecportfolio.ianwu.tw/how-to
+https://richmondrecportfolio.ianwu.tw/skill-how-to
 
 Tell them to follow that page to export their data, then come back with the
 three inputs below.
