@@ -27,7 +27,7 @@ three inputs below.
 
 ## Required user inputs
 
-1. **activityOutcome** — paste of Activity-Outcomes text (Event Id, Activity, Outcome, Reason, Comments, Created Date). Only `eventId`, `activity`, `createdDate` are kept in JSON.
+1. **activityOutcome** — paste of Activity-Outcomes text (Event Id, Activity, Outcome, Reason, Comments, Created Date). Keep only rows where Outcome is **Complete** (case-insensitive). Only `eventId`, `activity`, `createdDate` are kept in JSON.
 2. **Attendance-History.csv** — program registration history.
 3. **Attendance-Membership Scanning.csv** — facility / drop-in scan history.
 4. **personInformation** (optional) — Client Information paste from MyRichmond / [portfolio/gen](https://richmondactivityfinder.ianwu.tw/portfolio/gen). Only `firstName`, `lastName`, `birthDate` are kept (Account and Age discarded).
@@ -65,7 +65,7 @@ python3 "$SKILL_ROOT/scripts/convert_attendance.py" \
 
 - Membership CSV has two columns both named `Name` → map by position to `facility` then `membershipPass` (script uses `csv.reader`, not DictReader).
 - History: keep rows where `Status == Booked` only (registered for and attended the program).
-- Outcomes source text is unstructured; do not invent `outcome` / `reason` / `comments` fields.
+- Outcomes: keep rows where `Outcome == Complete` only (case-insensitive trim); drop Incomplete and other statuses. Do not invent `outcome` / `reason` / `comments` fields in JSON.
 - Client Information: keep First Name, Last Name, Birthdate only; drop Account and Age.
 - Do not merge overlapping History Attended scans into membership scans.
 - Timezone for wall times: `America/Vancouver`.

@@ -114,7 +114,7 @@ def load_person_information(path: Path) -> dict:
 
 
 def load_activity_outcomes(path: Path) -> list[dict]:
-    """Parse pasted Activity-Outcomes text; keep eventId, activity, createdDate."""
+    """Parse Activity-Outcomes text; keep Complete rows only (eventId, activity, createdDate)."""
     text = path.read_text(encoding="utf-8-sig")
     items: list[dict] = []
     for line in text.splitlines():
@@ -126,6 +126,8 @@ def load_activity_outcomes(path: Path) -> list[dict]:
             # Skip header leftovers / blank noise; fail on numeric-looking junk
             if re.match(r"^\d+", line):
                 raise ValueError(f"Unrecognized activity outcome line: {line!r}")
+            continue
+        if match.group("outcome").strip().lower() != "complete":
             continue
         items.append(
             {

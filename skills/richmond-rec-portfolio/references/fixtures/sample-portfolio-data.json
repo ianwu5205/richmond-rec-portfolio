@@ -1,0 +1,41 @@
+{
+  "clientInformation": {
+    "firstName": "Jamie",
+    "lastName": "Chen",
+    "birthDate": "2014-03-15"
+  },
+  "activityOutcomes": [
+    {
+      "eventId": "1001",
+      "activity": "SWIM - SWIMMER 3 - CHILDREN",
+      "createdDate": "2026-01-20"
+    },
+    {
+      "eventId": "1002",
+      "activity": "KARATE - YOUTH",
+      "createdDate": "2026-02-10"
+    }
+  ],
+  "attendance": {
+    "dropInCount": 10,
+    "aquatics": [
+      "SWIM - SWIMMER 3 - CHILDREN",
+      "SWIM - SWIMMER 4 - CHILDREN"
+    ],
+    "artsMusic": [
+      "PIANO LESSONS - BEGINNER"
+    ],
+    "artsDance": [
+      "BALLET - LEVEL 1"
+    ],
+    "sports": [
+      "SOCCER - U10 RECREATION"
+    ],
+    "martialArts": [
+      "KARATE - YOUTH"
+    ],
+    "camps": [
+      "SUMMER DAY CAMP - ADVENTURE"
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "source": "City of Richmond Recreation",
+    "generatedAt": "2026-09-16T12:00:00Z",
+    "timezone": "America/Vancouver"
+  },
+  "programHistory": [
+    {
+      "subject": "SWIM - SWIMMER 3 - CHILDREN",
+      "sourceRowNumber": 1
+    },
+    {
+      "subject": "SWIM - SWIMMER 4 - CHILDREN",
+      "sourceRowNumber": 2
+    },
+    {
+      "subject": "PIANO LESSONS - BEGINNER",
+      "sourceRowNumber": 3
+    },
+    {
+      "subject": "BALLET - LEVEL 1",
+      "sourceRowNumber": 4
+    },
+    {
+      "subject": "SOCCER - U10 RECREATION",
+      "sourceRowNumber": 5
+    },
+    {
+      "subject": "KARATE - YOUTH",
+      "sourceRowNumber": 6
+    },
+    {
+      "subject": "SUMMER DAY CAMP - ADVENTURE",
+      "sourceRowNumber": 7
+    }
+  ],
+  "membershipScans": [
+    {
+      "timeAttended": "2026-01-05T10:15:00",
+      "subject": "Public Swim",
+      "facility": "Minoru Centre",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 1
+    },
+    {
+      "timeAttended": "2026-01-08T10:15:00",
+      "subject": "Public Swim",
+      "facility": "Minoru Centre",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 2
+    },
+    {
+      "timeAttended": "2026-01-11T10:15:00",
+      "subject": "Public Swim",
+      "facility": "Minoru Centre",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 3
+    },
+    {
+      "timeAttended": "2026-01-14T10:15:00",
+      "subject": "Public Swim",
+      "facility": "Minoru Centre",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 4
+    },
+    {
+      "timeAttended": "2026-01-17T10:15:00",
+      "subject": "Public Swim",
+      "facility": "Minoru Centre",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 5
+    },
+    {
+      "timeAttended": "2026-01-20T10:15:00",
+      "subject": "Public Swim",
+      "facility": "Minoru Centre",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 6
+    },
+    {
+      "timeAttended": "2026-01-25T11:15:00",
+      "subject": "Weight Room",
+      "facility": "Watermania",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 7
+    },
+    {
+      "timeAttended": "2026-01-27T11:15:00",
+      "subject": "Weight Room",
+      "facility": "Watermania",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 8
+    },
+    {
+      "timeAttended": "2026-01-29T11:15:00",
+      "subject": "Weight Room",
+      "facility": "Watermania",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 9
+    },
+    {
+      "timeAttended": "2026-01-31T11:15:00",
+      "subject": "Weight Room",
+      "facility": "Watermania",
+      "membershipPass": "Youth Pass",
+      "sourceRowNumber": 10
+    }
+  ],
+  "activityOutcomes": [
+    {
+      "eventId": "1001",
+      "activity": "SWIM - SWIMMER 3 - CHILDREN",
+      "createdDate": "2026-01-20"
+    },
+    {
+      "eventId": "1002",
+      "activity": "KARATE - YOUTH",
+      "createdDate": "2026-02-10"
+    }
+  ],
+  "personInformation": {
+    "firstName": "Jamie",
+    "lastName": "Chen",
+    "birthDate": "2014-03-15"
+  }
+}
