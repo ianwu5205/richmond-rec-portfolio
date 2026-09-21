@@ -19,6 +19,7 @@ Standalone static HTML using Tailwind CSS CDN. Match visual structure and hierar
 1. **Page chrome** — Print button (`print:hidden` on screen)
 
 2. **Profile card** ← `clientInformation` (portfolio-data) or `personInformation` (attendance.json fallback)
+   - Includes **Period** under age/birthdate ← `attendance.json.period` (`start` → `end`, readable dates)
 
 3. **Recent Achievements** ← `activityOutcomes` (portfolio-data preferred)
 
@@ -37,6 +38,7 @@ Standalone static HTML using Tailwind CSS CDN. Match visual structure and hierar
 | UI | Source |
 |----|--------|
 | Name, initials, birthdate, age | `portfolio-data.clientInformation` → fallback `attendance.json.personInformation` |
+| Period | `attendance.json.period.start` → `attendance.json.period.end` |
 | Achievements | `portfolio-data.activityOutcomes` → fallback `attendance.json.activityOutcomes` |
 | Drop in count | `attendance.json.membershipScans` (computed in script) |
 | Attended Program cards | `portfolio-data.attendance.{categoryKey}` arrays |
