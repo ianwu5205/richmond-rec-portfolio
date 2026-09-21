@@ -19,7 +19,7 @@ Standalone static HTML using Tailwind CSS CDN. Match visual structure and hierar
 1. **Page chrome** — Print button (`print:hidden` on screen)
 
 2. **Profile card** ← `clientInformation` (portfolio-data) or `personInformation` (attendance.json fallback)
-   - Includes **Period** under age/birthdate ← `attendance.json.period` (`start` → `end`, readable dates)
+   - Includes **Period** emerald pill under age/birthdate ← `attendance.json.period` (`start` → `end`, readable dates)
 
 3. **Recent Achievements** ← `activityOutcomes` (portfolio-data preferred)
 

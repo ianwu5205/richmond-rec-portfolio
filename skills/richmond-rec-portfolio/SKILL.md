@@ -66,7 +66,7 @@ Semantics:
 The script maps:
 
 - `clientInformation` / `personInformation` → profile header (portfolio-data preferred)
-- `period` (`start` / `end` from attendance.json) → **Period** under the profile header (readable date range)
+- `period` (`start` / `end` from attendance.json) → **Period** emerald pill under the profile header (readable date range)
 - `activityOutcomes` → Recent Achievements (portfolio-data preferred)
 - `membershipScans` → **Drop in count** (always from attendance.json)
 - `attendance` category arrays → **Attended Program** (from portfolio-data.json)
