@@ -16,10 +16,12 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 CSV_TIME_FORMAT = "%m/%d/%y %I:%M %p"
 ISO_LOCAL_FORMAT = "%Y-%m-%dT%H:%M:%S"
 DATE_FORMAT = "%m/%d/%y"
+VANCOUVER = ZoneInfo("America/Vancouver")
 
 # Tab-separated Activity-Outcomes data line:
 # EventId \t Activity \t Outcome \t Reason \t Comments \t CreatedDate
@@ -139,6 +141,39 @@ def load_activity_outcomes(path: Path) -> list[dict]:
     return items
 
 
+def utc_now_iso() -> str:
+    """UTC generation timestamp as ISO 8601 with Z suffix."""
+    return (
+        datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
+
+
+def local_wall_to_iso_offset(local_iso: str) -> str:
+    """Attach America/Vancouver offset to a local wall-time ISO string."""
+    return (
+        datetime.strptime(local_iso, ISO_LOCAL_FORMAT)
+        .replace(tzinfo=VANCOUVER)
+        .isoformat()
+    )
+
+
+def portfolio_period(membership_scans: list[dict], generated_at: str) -> dict:
+    """period.start = earliest membership scan; period.end = generation now."""
+    if not membership_scans:
+        raise ValueError(
+            "membershipScans is empty; cannot determine period.start "
+            "from Attendance-Membership Scanning.csv"
+        )
+    earliest_local = min(scan["timeAttended"] for scan in membership_scans)
+    return {
+        "start": local_wall_to_iso_offset(earliest_local),
+        "end": generated_at,
+    }
+
+
 def convert(
     history_path: Path,
     membership_path: Path,
@@ -146,17 +181,17 @@ def convert(
     outcomes_path: Path | None = None,
     person_path: Path | None = None,
 ) -> dict:
+    generated_at = utc_now_iso()
+    membership_scans = load_membership_scans(membership_path)
     document: dict = {
         "meta": {
             "source": "City of Richmond Recreation",
-            "generatedAt": datetime.now(timezone.utc)
-            .replace(microsecond=0)
-            .isoformat()
-            .replace("+00:00", "Z"),
+            "generatedAt": generated_at,
             "timezone": "America/Vancouver",
         },
+        "period": portfolio_period(membership_scans, generated_at),
         "programHistory": load_program_history(history_path),
-        "membershipScans": load_membership_scans(membership_path),
+        "membershipScans": membership_scans,
     }
     if outcomes_path is not None:
         document["activityOutcomes"] = load_activity_outcomes(outcomes_path)

@@ -21,6 +21,38 @@ def e(text: Any) -> str:
     return html.escape("" if text is None else str(text), quote=True)
 
 
+def parse_iso_datetime(value: str) -> datetime | None:
+    raw = value.strip()
+    if not raw:
+        return None
+    if raw.endswith("Z"):
+        raw = raw[:-1] + "+00:00"
+    try:
+        return datetime.fromisoformat(raw)
+    except ValueError:
+        return None
+
+
+def format_readable_date(value: str) -> str:
+    """Format an ISO datetime as a short readable calendar date in Vancouver time."""
+    dt = parse_iso_datetime(value)
+    if dt is None:
+        return value.strip()
+    local = dt.astimezone(VANCOUVER) if dt.tzinfo is not None else dt
+    return f"{local.strftime('%b')} {local.day}, {local.year}"
+
+
+def format_period_range(period: Any) -> str:
+    """Return 'Mon D, YYYY → Mon D, YYYY' from attendance period, or empty if unavailable."""
+    if not isinstance(period, dict):
+        return ""
+    start = period.get("start")
+    end = period.get("end")
+    if not start or not end:
+        return ""
+    return f"{format_readable_date(str(start))} → {format_readable_date(str(end))}"
+
+
 def compute_age(birth_date: date, today: date) -> int:
     years = today.year - birth_date.year
     if (today.month, today.day) < (birth_date.month, birth_date.day):
@@ -63,7 +95,7 @@ def load_category_labels(path: Path) -> dict[str, str]:
 def validate_attendance(data: dict[str, Any], schema_path: Path | None) -> list[str]:
     """Light structural checks aligned with attendance.schema.json (stdlib only)."""
     errors: list[str] = []
-    for key in ("meta", "programHistory", "membershipScans", "activityOutcomes"):
+    for key in ("meta", "period", "programHistory", "membershipScans", "activityOutcomes"):
         if key not in data:
             errors.append(f"missing required field: {key}")
     meta = data.get("meta")
@@ -73,6 +105,14 @@ def validate_attendance(data: dict[str, Any], schema_path: Path | None) -> list[
                 errors.append(f"missing meta.{key}")
     elif "meta" in data:
         errors.append("meta must be an object")
+
+    period = data.get("period")
+    if isinstance(period, dict):
+        for key in ("start", "end"):
+            if key not in period:
+                errors.append(f"missing period.{key}")
+    elif "period" in data:
+        errors.append("period must be an object")
 
     for key in ("programHistory", "membershipScans", "activityOutcomes"):
         if key in data and not isinstance(data[key], list):
@@ -276,6 +316,18 @@ def build_html(
     if not meta_bits and not has_person:
         meta_bits = '<span class="text-slate-500">Person details not provided</span>'
 
+    period_text = format_period_range(attendance_data.get("period"))
+    period_html = ""
+    if period_text:
+        period_html = (
+            f'<p class="mt-5 flex w-fit items-center gap-2 rounded-full border '
+            f'border-emerald-100 bg-emerald-50 px-3 py-1.5 text-xs font-medium '
+            f'text-emerald-950 shadow-sm sm:ml-auto">'
+            f'<span class="uppercase tracking-wider text-emerald-700">Period</span>'
+            f'<span class="tabular-nums">{e(period_text)}</span>'
+            f"</p>"
+        )
+
     outcomes = resolve_outcomes(portfolio_data, attendance_data)
     scans = attendance_data.get("membershipScans") or []
     attendance = portfolio_data.get("attendance") or {}
@@ -306,6 +358,7 @@ def build_html(
         <h1 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">{e(display_name)}</h1>
         <p class="mt-1 text-slate-500">Activity Portfolio &amp; Progress</p>
         <p class="mt-3 text-sm">{meta_bits}</p>
+        {period_html}
       </div>
     </section>
 

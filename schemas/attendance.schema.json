@@ -5,7 +5,7 @@
   "description": "Program registration history, membership/facility drop-in scans, and activity outcome records from City of Richmond Recreation.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["meta", "programHistory", "membershipScans", "activityOutcomes"],
+  "required": ["meta", "period", "programHistory", "membershipScans", "activityOutcomes"],
   "properties": {
     "meta": {
       "type": "object",
@@ -25,6 +25,24 @@
           "type": "string",
           "const": "America/Vancouver",
           "description": "Wall-clock timezone for membershipScans.timeAttended values."
+        }
+      }
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "description": "Portfolio coverage window: earliest membership scan through generation time.",
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Earliest membership scan timestamp from Attendance-Membership Scanning.csv (America/Vancouver local time as ISO 8601 with offset)."
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Generation time (now) when this JSON was produced; matches meta.generatedAt."
         }
       }
     },

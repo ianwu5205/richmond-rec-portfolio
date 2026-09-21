@@ -2,8 +2,8 @@
 name: richmond-rec-history-to-json
 description: >-
   Turns Canada BC Richmond Recreation Program history into structured JSON
-  (programHistory, membershipScans, activityOutcomes, optional personInformation).
-  Use when the user wants to convert Richmond Recreation
+  (period, programHistory, membershipScans, activityOutcomes, optional
+  personInformation). Use when the user wants to convert Richmond Recreation
   attendance exports, Activity-Outcomes text, Client Information paste,
   Attendance-History.csv, or Attendance-Membership Scanning.csv into processed
   JSON for future dashboard use.
@@ -55,6 +55,7 @@ python3 "$SKILL_ROOT/scripts/convert_attendance.py" \
 
 3. Confirm the written JSON includes:
    - `meta` (source, generatedAt, timezone `America/Vancouver`)
+   - `period` — `start` = earliest membership scan (ISO datetime with America/Vancouver offset); `end` = generation now (matches `meta.generatedAt`)
    - `programHistory` — **Booked only**; fields `subject`, `sourceRowNumber` (no status, no time)
    - `membershipScans` — `timeAttended` (local `YYYY-MM-DDTHH:mm:ss`), `subject`, `facility`, `membershipPass`, `sourceRowNumber`
    - `activityOutcomes` — `eventId`, `activity`, `createdDate` (`YYYY-MM-DD`)
